@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    container_name: rapport-db
+    ports:
+      - "3306:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - rapport-mysql:/var/lib/mysql
+      - ./infra/mysql/initdb.d:/docker-entrypoint-initdb.d
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      TZ: Asia/Seoul
+    restart: always
+#  api:
+#    build: .
+#    container_name: rapport-api
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+#    restart: always
+#    env_file:
+#      - .env
+#    environment:
+#      DJANGO_SETTINGS_MODULE: config.settings.deploy
+#
+#  server:
+#    build: ./infra/nginx
+#    container_name: rapport-nginx
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    restart: always
+#    volumes:
+#      - ./certbot/conf:/etc/nginx/ssl
+#      - ./certbot/data:/var/www/letsencrypt
+#    depends_on:
+#      - api
+
+volumes:
+  rapport-mysql:
