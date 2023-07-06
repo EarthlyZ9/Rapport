@@ -3,7 +3,7 @@ from ninja_jwt.tokens import RefreshToken
 
 class AuthService:
     @staticmethod
-    def attach_tokens_for_user(user):
+    def generate_tokens_for_user(user) -> dict:
         refresh = RefreshToken.for_user(user)
 
         return {

@@ -42,3 +42,7 @@ class RefreshTokenSchema(Schema):
 class TokenSchema(Schema):
     access: str
     refresh: str
+
+
+class EmailSchema(Schema):
+    email: str
