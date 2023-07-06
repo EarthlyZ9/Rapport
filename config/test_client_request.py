@@ -1,13 +1,18 @@
 import json
+from django.test import Client
+from http.cookies import SimpleCookie
 
 
 class ClientRequest:
-    def __init__(self, client):
+    def __init__(self, client: Client):
         self.client = client
 
-    def __call__(self, type, url, data=None):
+    def __call__(self, type, url, data=None, cookies: dict = None):
         content_type = "application/json"
         accept_header = "application/json"
+
+        if cookies:
+            self.client.cookies = SimpleCookie(cookies)
 
         if type == "get":
             res = self.client.get(
@@ -39,3 +44,6 @@ class ClientRequest:
                 HTTP_ACCEPT=accept_header,
             )
         return res
+
+    def clear_cookies(self):
+        self.client.cookies.clear()
