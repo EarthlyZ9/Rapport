@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import update_last_login
 from django.http import HttpResponse, HttpRequest
 from ninja_extra import api_controller, route, ControllerBase
 from ninja_extra.exceptions import AuthenticationFailed
@@ -37,6 +38,8 @@ class AuthController(ControllerBase):
                 raise AuthenticationFailed("Authentication failed. Incorrect password.")
         except User.DoesNotExist:
             raise AuthenticationFailed("Authentication failed. No user by this email.")
+
+        update_last_login(None, user)
 
         tokens = self.service.generate_tokens_for_user(user)
         res = user.__dict__
