@@ -72,3 +72,17 @@ class User(AbstractBaseUser, TimestampMixin, PermissionsMixin):
 
     def __repr__(self):
         return f"User({self.id}, {self.email})"
+
+
+class UserRefreshToken(TimestampMixin):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    token = models.CharField(max_length=300, null=False)
+
+    class Meta:
+        db_table = "user_refresh_token"
+
+    def __str__(self):
+        return f"[{self.id}] {self.user}"
+
+    def __repr__(self):
+        return f"RefreshToken({self.user})"
