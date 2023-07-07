@@ -1,6 +1,7 @@
 from ninja import ModelSchema, Schema
 
 from apps.users.models import User
+from config.to_camel_case import to_camel_case
 
 
 class UserSchema(ModelSchema):
@@ -14,6 +15,8 @@ class UserSchema(ModelSchema):
             "created_at",
             "updated_at",
         ]
+        alias_generator = to_camel_case
+        allow_population_by_field_name = True
 
 
 class LoginSchema(ModelSchema):
@@ -33,6 +36,8 @@ class SignupSchema(ModelSchema):
     class Config:
         model = User
         model_fields = ["email", "password", "name", "affiliation"]
+        alias_generator = to_camel_case
+        allow_population_by_field_name = True
 
 
 class RefreshTokenSchema(Schema):

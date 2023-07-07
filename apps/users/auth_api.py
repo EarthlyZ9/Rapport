@@ -28,7 +28,7 @@ class AuthController(ControllerBase):
     def __init__(self, auth_service: AuthService):
         self.service = auth_service
 
-    @route.post("/login", response=LoginResponseSchema)
+    @route.post("/login", response=LoginResponseSchema, by_alias=True)
     def login(self, data: LoginSchema):
         d = data.dict()
         email, password = d.get("email"), d.get("password")
@@ -50,6 +50,7 @@ class AuthController(ControllerBase):
     @route.post(
         "/signup",
         response={201: UserSchema, 400: ExceptionSchema, 422: ExceptionSchema},
+        by_alias=True,
     )
     def signup(self, request: HttpRequest, data: SignupSchema):
         # Check if duplicate email has been checked
