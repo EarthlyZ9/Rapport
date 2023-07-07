@@ -1,4 +1,5 @@
-from typing import List
+from datetime import date
+from typing import List, Optional
 
 from ninja import ModelSchema, Schema
 
@@ -30,6 +31,19 @@ class CustomerSchema(ModelSchema):
 class CustomerCreateSchema(ModelSchema):
     class Config:
         model = Customer
-        model_fields = ["name", "date_of_birth", "calendar", "enticement_status"]
+        model_fields = ["name", "date_of_birth", "calendar"]
+        alias_generator = to_camel_case
+        allow_population_by_field_name = True
+
+
+class CustomerUpdateSchema(Schema):
+    name: Optional[str]
+    date_of_birth: Optional[date]
+    calendar: Optional[str]
+    enrollment_date: Optional[date]
+    enticement_status: Optional[str]
+    flag: Optional[str]
+
+    class Config:
         alias_generator = to_camel_case
         allow_population_by_field_name = True
