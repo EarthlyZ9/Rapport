@@ -21,3 +21,8 @@ class DuplicateInstanceException(APIException):
 class UnprocessableEntityException(APIException):
     status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
     message = "Unprocessable entity"
+
+
+class InstanceNotFoundException(APIException):
+    status_code = status.HTTP_404_NOT_FOUND
+    message = "Instance not found"

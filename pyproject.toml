@@ -17,6 +17,7 @@ pre-commit = "^3.3.3"
 pytest = "^7.4.0"
 pytest-django = "^4.5.2"
 django-extensions = "^3.2.3"
+black = { extras = ["d"], version = "^23.3.0" }
 
 [tool.poetry.dev-dependencies]
 
@@ -25,8 +26,8 @@ black = "^23.3.0"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings.debug"
-python_files = "test_*.py *_tests.py tests.py test.py"
-addopts = "-vv --maxfail=10 --no-migrations"
+python_files = "test_*.py *_tests.py test.py"
+addopts = "-vv --maxfail=10 --no-migrations --disable-warnings"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
