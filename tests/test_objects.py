@@ -20,8 +20,6 @@ test_customer_1 = dict(
     name="customer1",
     date_of_birth="2000-07-29",
     calendar=Customer.Calendar.SOLAR.value,
-    enrollment_date="2023-03-20",
-    enticement_status=Customer.EnticementStatus.PROGRESS_COMPLETE.value,
 )
 
 test_customer_2 = dict(
@@ -29,6 +27,4 @@ test_customer_2 = dict(
     name="customer2",
     date_of_birth="2003-08-01",
     calendar=Customer.Calendar.SOLAR.value,
-    enrollment_date="2023-04-01",
-    enticement_status=Customer.EnticementStatus.IN_PROGRESS.value,
 )
