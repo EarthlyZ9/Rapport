@@ -29,7 +29,7 @@ class TestCustomerView(object):
         data = res.json()
 
         assert res.status_code == 200
-        assert len(data) == 2
+        assert len(data["items"]) == 2
 
     @pytest.mark.django_db
     def test_create_new_customer(self, create_test_user):
@@ -111,6 +111,5 @@ class TestCustomerView(object):
                 + self.create_token_for_test_user(User.objects.get(id=2))
             },
         )
-        data = res.json()
 
         assert res.status_code == 403
