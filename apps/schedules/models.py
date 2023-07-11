@@ -11,7 +11,7 @@ class CustomerSchedule(TimestampMixin):
     title = models.CharField(max_length=100, null=False)
     date = models.DateField(null=False)
     has_end_time = models.BooleanField(default=False)
-    start_time = models.TimeField(null=False)
+    start_time = models.TimeField(null=True)
     end_time = models.TimeField(null=True)
 
     class Meta:
