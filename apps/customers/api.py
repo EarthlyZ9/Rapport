@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from ninja_extra import api_controller, route, ControllerBase, paginate
 from ninja_extra.schemas import NinjaPaginationResponseSchema
 from ninja_extra.searching import searching
@@ -86,7 +84,6 @@ class CustomerController(ControllerBase):
         for k, v in customer_data.items():
             setattr(customer, k, v)
 
-        customer.updated_at = datetime.now()
         customer.save(update_fields=customer_data.keys())
 
         return customer
