@@ -146,6 +146,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Celery
+CELERY_TIMEZONE = "Asia/Seoul"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq"
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
