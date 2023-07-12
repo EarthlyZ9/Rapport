@@ -1,5 +1,5 @@
 from ninja_extra import api_controller, route, ControllerBase
-
+from apps.products.tasks import do_calc_total
 from apps.products.services import ProductService
 
 
@@ -11,3 +11,8 @@ class ProductController(ControllerBase):
     @route.get("")
     def list(self, request):
         return "products"
+
+    @route.get("/test-celery")
+    def test_celery(self):
+        do_calc_total.delay()
+        return "Done"
